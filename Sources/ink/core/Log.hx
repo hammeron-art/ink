@@ -1,4 +1,4 @@
-package bakeneko.core;
+package ink.core;
 
 import haxe.io.Path;
 import haxe.macro.Context;
@@ -68,9 +68,9 @@ class Log {
 				if (!$expr)
 					if ($message != null) {
 						trace('Fatal: $str => ' + $message);
-						throw bakeneko.core.Log.LogType.assertion('$str, ' + $message);
+						throw ink.core.Log.LogType.assertion('$str, ' + $message);
 					} else {
-						throw bakeneko.core.Log.LogType.assertion('$str');
+						throw ink.core.Log.LogType.assertion('$str');
 					}
 			}
 		}

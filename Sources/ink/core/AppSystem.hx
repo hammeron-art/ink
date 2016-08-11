@@ -1,4 +1,4 @@
-package bakeneko.core;
+package ink.core;
 
 /**
  * An appsystem is create when the app start and exists
@@ -7,10 +7,7 @@ package bakeneko.core;
 
 class AppSystem {
 
-	var app:Application;
-
 	public function new() {
-		app = Application.get();
 	}
 
 	public function onInit():Void {};
