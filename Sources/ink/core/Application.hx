@@ -9,13 +9,15 @@ typedef AppOptions = {
 
 class Application {
 
+	public var renderSystem(default, null):ink.render.RenderSystem;
+	public var input:ink.input.InputSystem;
+	public var stateManager:ink.state.StateManager;
+
 	var options:AppOptions;
 	var systems:Array<AppSystem>;
 
 	// If systems can be created
 	var canAddSystens:Bool;
-	var renderSystem:ink.render.RenderSystem;
-	var input:ink.input.InputSystem;
 
 	public function new() {
 		systems = [];
@@ -101,11 +103,14 @@ class Application {
 		canAddSystens = false;
 		
 		for (appSystem in systems) {
+			@:privateAccess
+			appSystem.app = this;
 			appSystem.onInit();
 		}
 
 		onInit();
 		initialState();
+		Log.assert(stateManager.operations.length > 0 && stateManager.operations.first().action == ink.state.StateManager.StateAction.Push, 'Can\'t start without a state');
 	}
 
 	/**
@@ -114,7 +119,7 @@ class Application {
 	function createDefaultSystems():Void {
 		input = createSystem(new ink.input.InputSystem());
 		//resourceManager = createSystem(new ResourceManager());
-		//stateManager = createSystem(new StateManager());
+		stateManager = createSystem(new ink.state.StateManager());
 		renderSystem = createSystem(new ink.render.RenderSystem());
 		renderSystem.backColor = options.backColor;
 		/*#if packer
@@ -132,7 +137,7 @@ class Application {
 			appSystem.onUpdate(delta);
 		}
 
-		//stateManager.updateStates(delta);
+		stateManager.updateStates(delta);
 	}
 	
 	function render(framebuffer: Framebuffer): Void {

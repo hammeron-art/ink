@@ -1,18 +1,14 @@
-package ink.core;
+package ink.state;
+
+import ink.core.Log;
 
 /**
- * An appsystem is create when the app start and exists
- * through the entire life of the app
+ * ...
+ * @author Hammer On Art
  */
+class StateSystem {
 
-class AppSystem {
-
-    var app:Application;
-
-	public function new() {
-	}
-
-	public function onInit():Void {};
+	public function onInit():Void { Log.info('$this initialized'); };
     public function onResume():Void {};
     public function onForeground():Void {};
     public function onUpdate(delta:Float):Void {};
@@ -20,4 +16,9 @@ class AppSystem {
     public function onBackground():Void {};
     public function onSuspend():Void {};
     public function onDestroy():Void {};
+	
+	public function toString() {
+		return Type.getClassName(Type.getClass(this));
+	}
+	
 }

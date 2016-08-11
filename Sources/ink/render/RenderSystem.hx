@@ -13,6 +13,14 @@ class RenderSystem extends ink.core.AppSystem {
 
 	public function render(framebuffer:kha.Framebuffer) {
 		framebuffer.g4.clear(backColor);
+
+		var g = framebuffer.g2;
+
+		var g = framebuffer.g2;
+		g.begin(false);
+		g.color = Color.White;
+		g.fillRect(300, 200, 128, 64);
+		g.end();
 	}
 
 }
