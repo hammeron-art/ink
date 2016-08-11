@@ -15,6 +15,7 @@ class Application {
 	// If systems can be created
 	var canAddSystens:Bool;
 	var renderSystem:ink.render.RenderSystem;
+	var input:ink.input.InputSystem;
 
 	public function new() {
 		systems = [];
@@ -111,7 +112,7 @@ class Application {
 	 * Create core app systems
 	 */
 	function createDefaultSystems():Void {
-		//input = createSystem(new InputSystem());
+		input = createSystem(new ink.input.InputSystem());
 		//resourceManager = createSystem(new ResourceManager());
 		//stateManager = createSystem(new StateManager());
 		renderSystem = createSystem(new ink.render.RenderSystem());
@@ -122,10 +123,36 @@ class Application {
 	}
 
 	function update(): Void {
+		var delta = 1 / 60;
+		//updateIntervalRemainder = Math.min(updateIntervalRemainder + delta, 0.33);
+		
+		onUpdate(delta);
+
+		for (appSystem in systems) {
+			appSystem.onUpdate(delta);
+		}
+
+		//stateManager.updateStates(delta);
 	}
 	
 	function render(framebuffer: Framebuffer): Void {
 		renderSystem.render(framebuffer);
 	}
+
+	/*function background():Void {
+		stateManager.backgroundStates();
+
+		for (appSystem in systems) {
+			appSystem.onBackground();
+		}
+	}
+
+	function foreground():Void {
+		for (appSystem in systems) {
+			appSystem.onForeground();
+		}
+
+		stateManager.foregroundStates();
+	}*/
 
 }
