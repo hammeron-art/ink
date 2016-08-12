@@ -128,7 +128,7 @@ class Application {
 	}
 
 	function update(): Void {
-		var delta = 1 / 60;
+		var delta = 1.0 / 60.0;
 		//updateIntervalRemainder = Math.min(updateIntervalRemainder + delta, 0.33);
 		
 		onUpdate(delta);

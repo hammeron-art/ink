@@ -102,8 +102,10 @@ class StateManager extends AppSystem {
 					states.pop();
 
 					isStartState = false;
-
-					states[states.length-1].resume();
+					
+					if (states.length > 0)
+						states[states.length-1].resume();
+						
 				default:
 			}
 

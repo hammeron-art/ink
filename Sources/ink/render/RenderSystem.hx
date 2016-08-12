@@ -19,7 +19,14 @@ class RenderSystem extends ink.core.AppSystem {
 		var g = framebuffer.g2;
 		g.begin(false);
 		g.color = Color.White;
-		g.fillRect(300, 200, 128, 64);
+
+		var entities = app.stateManager.getCurrentState().scene.entityList;
+
+		for (entity in entities) {
+			var transform = entity.transform.getWorld();
+			g.fillRect(transform.m[12], transform.m[13], 64, 64);
+		}
+
 		g.end();
 	}
 

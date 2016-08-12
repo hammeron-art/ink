@@ -11,11 +11,11 @@ class State {
 	var systems:Array<StateSystem>;
 	var canAddSystens:Bool = true;
 
-	//public var scene(default, null):Scene;
+	public var scene(default, null):ink.entity.Scene;
 
 	public function new() {
 		systems = [];
-		//scene = new Scene();
+		scene = new ink.entity.Scene();
 	}
 
 	/**
