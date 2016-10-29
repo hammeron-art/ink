@@ -61,6 +61,16 @@ class StateManager extends AppSystem {
 	 * @param	delta
 	 */
 	function updateStates(delta:Float) {
+		updateOperations();
+		
+		var currentState = getCurrentState();
+
+		if (currentState != null) {
+			currentState.update(delta);
+		}
+	}
+
+	function updateOperations()  {
 		while (!operations.isEmpty()) {
 
 			switch(operations.first().action) {
@@ -110,12 +120,6 @@ class StateManager extends AppSystem {
 			}
 
 			operations.pop();
-		}
-
-		var currentState = getCurrentState();
-
-		if (currentState != null) {
-			currentState.update(delta);
 		}
 	}
 

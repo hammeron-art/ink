@@ -1,16 +1,16 @@
 package ink.math;
 
 import haxe.ds.Vector;
-import ink.arrays.Float32Array;
+//import ink.arrays.Float32Array;
 
 /**
  * The underlying type of Quaternion
  */
 class QuaternionBase {
-    public var q:Float32Array;
+    public var q:haxe.ds.Vector<Float>;
 
     public function new(w:Float, x:Float, y:Float, z:Float) {
-		q = new Float32Array(4);
+		q = new haxe.ds.Vector(4);
 
         q[0] = x;
         q[1] = y;

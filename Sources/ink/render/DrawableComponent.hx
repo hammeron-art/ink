@@ -1,28 +1,18 @@
-package ink.entity;
+package ink.render;
 
-@:keepSub
-class Component {
-
-	public var entity(default, set):Entity;
-
-	public function new() {
-	}
-
-	public function removeFromEntity() {
-	}
-
-	// User events
+class DrawableComponent extends ink.entity.Component {
 
 	/**
 	 * When the component is attached to an entity.
 	 */
-	public function onAddedToEntity() { }
+	override public function onAddedToEntity() {
+	}
 
 	/**
 	 * When the component is attached to and entity
 	 * and that entity is on a scene.
 	 */
-	public function onAddedToScene() { }
+	override public function onAddedToScene() { }
 
 	/**
 	 * When the application is resumed while the component's
@@ -32,7 +22,7 @@ class Component {
 	 * is added to the entity if the entity is already in the
 	 * scene.
 	 */
-	public function onResume() { }
+	override public function onResume() { }
 
 	/**
 	 * When the application is foregrounded while
@@ -42,7 +32,7 @@ class Component {
 	 * the component is added to the entity if the entity
 	 * is alread in the scene.
 	 */
-	public function onForeground() { }
+	override public function onForeground() { }
 
 	/**
 	 * When the application is foregrounded while the entity
@@ -53,13 +43,13 @@ class Component {
 	 *
 	 * @param	delta
 	 */
-	public function onUpdate(delta:Float) { }
+	override public function onUpdate(delta:Float) { }
 
 	/**
 	 * At fixed time periods
 	 * @param	delta
 	 */
-	public function onFixedUpdate(delta:Float) { }
+	override public function onFixedUpdate(delta:Float) { }
 
 	/**
 	 * When the application is backgrounded while the owning
@@ -67,7 +57,7 @@ class Component {
 	 * currently foregrounded or when the component is removed
 	 * while the entity is in the scene
 	 */
-	public function onBackground() { }
+	override public function onBackground() { }
 
 	/**
 	 * When the application is backgrounded while the owning
@@ -76,29 +66,17 @@ class Component {
 	 * application is currently active or when the component
 	 * is removed while the entity is in the scene.
 	 */
-	public function onSuspend() { }
+	override public function onSuspend() { }
 
 	/**
 	 * When the component is removed from an entity or then the
 	 * entity is removed from the scene.
 	 */
-	public function onRemovedFromScene() { }
+	override public function onRemovedFromScene() { }
 
 	/**
 	 * When the component is removed from an entity.
 	 */
-	public function onRemovedFromEntity() { }
-
-	function set_entity(entity:Entity) {
-		this.entity = entity;
-
-		onAddedToEntity();
-
-		return entity;
-	}
-
-	public function toString() {
-		return Type.getClassName(Type.getClass(this)) + ' of $entity';
-	}
+	override public function onRemovedFromEntity() { }
 
 }

@@ -1,6 +1,6 @@
 package ink.math;
 
-import ink.arrays.Float32Array;
+//import ink.arrays.Float32Array;
 
 // All notations are row-major where the translation components
 // Occupy the 13th, 14th and 15th elements of the 16-element matrix
@@ -12,7 +12,7 @@ import ink.arrays.Float32Array;
  */
 @:noCompletion
 class Matrix4x4Base {
-	public var m:Float32Array;
+	public var m:haxe.ds.Vector<Float>;
 
     public inline function new(
         m00:Float, m10:Float, m20:Float, m30:Float,
@@ -20,7 +20,8 @@ class Matrix4x4Base {
         m02:Float, m12:Float, m22:Float, m32:Float,
         m03:Float, m13:Float, m23:Float, m33:Float)
     {
-		m = new Float32Array(16);
+		//m = new Float32Array(16);
+        m = new haxe.ds.Vector(16);
 
         m[0] = m00;
         m[1] = m10;
@@ -218,7 +219,7 @@ abstract Matrix4x4(Matrix4x4Base) from Matrix4x4Base to Matrix4x4Base {
 	 * Return a typed array of this Matrix
 	 * @return
 	 */
-	public inline function float32Array():Float32Array {
+	public inline function float32Array() {
 		return this.m;
 	}
 

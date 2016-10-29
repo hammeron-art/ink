@@ -3,6 +3,7 @@ package ink.entity;
 import ink.core.Log.*;
 import ink.utils.Utils;
 
+@:keepSub
 class Entity {
 
 	public var id:String;

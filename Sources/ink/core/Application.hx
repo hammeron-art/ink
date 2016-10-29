@@ -5,6 +5,7 @@ import kha.Framebuffer;
 typedef AppOptions = {
 	> kha.System.SystemOptions,
 	var backColor:kha.Color;
+	var loadEverything:Bool;
 }
 
 class Application {
@@ -23,7 +24,7 @@ class Application {
 		systems = [];
 		
 		// Default options
-		options = {title: "Ink Application", width: 960, height: 540, backColor: kha.Color.fromValue(0x2a3133)};
+		options = {title: "Ink Application", width: 800, height: 600, backColor: kha.Color.fromValue(0x2a3133), loadEverything: true};
 	}
 
 	public function initOptions(options) {
@@ -111,6 +112,7 @@ class Application {
 		onInit();
 		initialState();
 		Log.assert(stateManager.operations.length > 0 && stateManager.operations.first().action == ink.state.StateManager.StateAction.Push, 'Can\'t start without a state');
+		stateManager.updateOperations();
 	}
 
 	/**

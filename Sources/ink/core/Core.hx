@@ -2,6 +2,7 @@ package ink.core;
 
 import kha.System;
 import kha.Scheduler;
+import kha.Assets;
 
 @:access(ink.core.Application)
 class Core {
@@ -14,9 +15,17 @@ class Core {
 		var options = app.initOptions(app.options);
 
 		System.init(options, function() {
-			app.init();
-			System.notifyOnRender(app.render);
-			Scheduler.addTimeTask(app.update, 0, 1 / 60);
+			function start() {
+				app.init();
+				System.notifyOnRender(app.render);
+				Scheduler.addTimeTask(app.update, 0, 1 / 60);
+			}
+
+			if (options.loadEverything) {
+				Assets.loadEverything(start);
+			} else {
+				start();
+			}
 		});
 	}
 }
