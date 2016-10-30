@@ -123,6 +123,8 @@ class Application {
 		//resourceManager = createSystem(new ResourceManager());
 		stateManager = createSystem(new ink.state.StateManager());
 		renderSystem = createSystem(new ink.render.RenderSystem());
+		trace(options.backColor);
+		@:privateAccess
 		renderSystem.backColor = options.backColor;
 		/*#if packer
 		packer = createSystem(new TexturePacker());

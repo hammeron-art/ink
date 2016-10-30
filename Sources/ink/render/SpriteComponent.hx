@@ -14,10 +14,10 @@ class SpriteComponent extends MeshComponent {
 		mesh = {
 			vertexCount: 4,
 			positions: [
-				[0.0, 0.0, 0.0],
-				[texture.image.width, 0.0, 0.0],
-				[0.0, texture.image.height, 0.0],
-				[texture.image.width, texture.image.height, 0.0]
+				[-texture.image.width/2, -texture.image.height/2, 0.0],
+				[texture.image.width/2, -texture.image.height/2, 0.0],
+				[-texture.image.width/2, texture.image.height/2, 0.0],
+				[texture.image.width/2, texture.image.height/2, 0.0]
 			],
 			colors: [[1.0, 1.0, 1.0, 1.0], [1.0, 1.0, 1.0, 1.0], [1.0, 1.0, 1.0, 1.0], [1.0, 1.0, 1.0, 1.0]],
 			uvs: [[0.0, 1.0], [1.0, 1.0], [0.0, 0.0], [1.0, 0.0]],

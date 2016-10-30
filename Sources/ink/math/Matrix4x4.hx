@@ -1022,7 +1022,23 @@ abstract Matrix4x4(Matrix4x4Base) from Matrix4x4Base to Matrix4x4Base {
             0.0, 0.0, 0.0, 0.0,
             0.0, 0.0, 0.0, 0.0,
             0.0, 0.0, 0.0, 0.0,
-            0.0, 0.0, 0.0, 0.0);
+            0.0, 0.0, 0.0, 0.0
+        );
+    }
+
+    @:to
+    public function toFastMatrix4x4() {
+        var self:Matrix4x4 = this;
+        return new kha.math.FastMatrix4(
+            /*self[0], self[1], self[2], self[3],
+            self[4], self[5], self[6], self[7],
+            self[8], self[9], self[10], self[11],
+            self[12], self[13], self[14], self[15]*/
+            self[0], self[4], self[8], self[12],
+            self[1], self[5], self[9], self[13],
+            self[2], self[6], self[10], self[14],
+            self[3], self[7], self[11], self[15]
+        );
     }
 
     private static inline function get_identity():Matrix4x4 {
@@ -1030,7 +1046,8 @@ abstract Matrix4x4(Matrix4x4Base) from Matrix4x4Base to Matrix4x4Base {
             1.0, 0.0, 0.0, 0.0,
             0.0, 1.0, 0.0, 0.0,
             0.0, 0.0, 1.0, 0.0,
-            0.0, 0.0, 0.0, 1.0);
+            0.0, 0.0, 0.0, 1.0
+        );
     }
 
     private inline function get_translation():Vector3 {

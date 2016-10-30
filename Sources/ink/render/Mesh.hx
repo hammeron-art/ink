@@ -2,7 +2,6 @@ package ink.render;
 
 import kha.graphics4.IndexBuffer;
 import kha.graphics4.VertexBuffer;
-import kha.graphics4.VertexStructure;
 
 class Mesh {
 
@@ -35,7 +34,6 @@ class Mesh {
 		}
 		vertexBuffer.unlock();
 
-		// Copy indices to index buffer
 		var iData = indexBuffer.lock();
 		for (i in 0...iData.length) {
 			iData[i] = meshData.indices[i];

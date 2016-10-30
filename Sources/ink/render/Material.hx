@@ -4,17 +4,34 @@ import kha.graphics4.PipelineState;
 
 class Material {
 
-	public var state:PipelineState;
+	public var pipeline:PipelineState;
+	public var vertexFormat:VertexFormat;
+	public var textures:haxe.ds.Vector<Texture>;
+
+	var textureIds:haxe.ds.Vector<kha.graphics4.TextureUnit>;
+	static var maxTextureNumber = 8;
 
 	public function new() {
-		state = new PipelineState();
+		pipeline = new PipelineState();
+		textures = new haxe.ds.Vector(maxTextureNumber);
+		textureIds = new haxe.ds.Vector(maxTextureNumber);
 	}
 
 	public function build() {
-		state.compile();
+		pipeline.inputLayout = [vertexFormat.convertToVertexStructure()];
+		pipeline.compile();
+
+		for (i in 0...maxTextureNumber) {
+			textureIds[i] = pipeline.getTextureUnit('tex&i');
+		}
 	}
 
 	public function apply(g:kha.graphics4.Graphics) {
-		g.setPipeline(state);
+		g.setPipeline(pipeline);
+		
+		for (i in 0...maxTextureNumber) {
+			if (textures[i] != null)
+				g.setTexture(textureIds[i], textures[i].image);
+		}
 	}
 }

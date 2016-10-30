@@ -13,6 +13,7 @@ class Core {
 	public function init(createApplication:Void->ink.core.Application) {
 		var app = createApplication();
 		var options = app.initOptions(app.options);
+		app.options = options;
 
 		System.init(options, function() {
 			function start() {
