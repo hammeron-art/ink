@@ -22,7 +22,17 @@ class Material {
 		pipeline.compile();
 
 		for (i in 0...maxTextureNumber) {
-			textureIds[i] = pipeline.getTextureUnit('tex&i');
+			#if flash
+			try {
+				textureIds[i] = pipeline.getTextureUnit('tex$i');
+			} catch (e:Dynamic) {
+				textureIds[i] = null;
+			}
+			#else
+			textureIds[i] = pipeline.getTextureUnit('tex$i');
+			#end
+
+			trace(textureIds[i]);
 		}
 	}
 
@@ -30,7 +40,7 @@ class Material {
 		g.setPipeline(pipeline);
 		
 		for (i in 0...maxTextureNumber) {
-			if (textures[i] != null)
+			if (textures[i] != null && textureIds[i] != null)
 				g.setTexture(textureIds[i], textures[i].image);
 		}
 	}

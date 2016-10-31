@@ -35,7 +35,6 @@ class RenderSystem extends ink.core.AppSystem {
 		material.vertexFormat = vertexStructure;
 		material.build();
 
-		textureID = material.pipeline.getTextureUnit('tex');
 		mvpID = material.pipeline.getConstantLocation('modelViewProjection');
 	}
 
