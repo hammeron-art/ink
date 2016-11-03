@@ -19,6 +19,7 @@ class Material {
 
 	public function build() {
 		pipeline.inputLayout = [vertexFormat.convertToVertexStructure()];
+		trace(pipeline.inputLayout);
 		pipeline.compile();
 
 		for (i in 0...maxTextureNumber) {

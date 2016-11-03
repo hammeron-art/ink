@@ -123,9 +123,8 @@ class Application {
 		//resourceManager = createSystem(new ResourceManager());
 		stateManager = createSystem(new ink.state.StateManager());
 		renderSystem = createSystem(new ink.render.RenderSystem());
-		trace(options.backColor);
-		@:privateAccess
 		renderSystem.backColor = options.backColor;
+
 		/*#if packer
 		packer = createSystem(new TexturePacker());
 		#end*/
@@ -145,7 +144,8 @@ class Application {
 	}
 	
 	function render(framebuffer: Framebuffer): Void {
-		renderSystem.render(framebuffer);
+		if (renderSystem != null)
+			renderSystem.render(framebuffer);
 	}
 
 	/*function background():Void {
